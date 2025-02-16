@@ -116,7 +116,6 @@ If you find this blog or our code useful, we would appreciate it if you could ci
   year={2025},
   howpublished={\url{https://hkust-nlp.notion.site/simplerl-reason}},
   note={Notion Blog}
-  year={2025}
 }
 ```
 
