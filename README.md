@@ -9,7 +9,9 @@
 </div>
 
 
-This repo contains a simple reinforcement learning recipe to improve models' reasoning abilities. It is simple because only rule-based reward is used, the recipe is almost the same as the one used in [DeepSeek-R1](https://github.com/deepseek-ai/DeepSeek-R1), except that the code currently uses PPO rather than GRPO. We have used this code to train small models (7B) on limited data (8K examples), achieving surprisingly strong results -- for example, starting from Qwen2.5-Math-7B (base model), we perform RL on it directly. No SFT, no reward model, just 8K MATH examples for verification, the resultant model achieves (pass@1) 33.3% on AIME, 62.5% on AMC, and 77.2% on MATH, outperforming Qwen2.5-math-7B-instruct and being comparable to previous baselines that use >50x more data and more complicated components. You may check our Notion blog or the Introduction below for more details.  
+This repo contains a simple reinforcement learning recipe to improve models' reasoning abilities. It is simple because only rule-based reward and GSM8K/Math datasets are used. We have used this code to successfully train 10 diverse base models with limited data (8K examples), achieving surprisingly strong results -- the accuracy gains range from 10 to more than 20 absolute points. These models include Llama3 8B, Mistral 7B/24B, DeepSeekMath 7B, Qwen2.5 0.5B/1.5B/7B/14B/32B, and Qwen2.5-Math-7B. While we observe significant increase in both response length and accuracy, we note that different models exhibit distinct reasoning behaviors during training, and the increased response length does not necessarily correlate with emergence of certain cognitive behaviors such as self-verification. We share many findings and practices in our paper, and we release the code, model checkpoints, and analysis tools here. 
+
+> You may find an old version of this repo [here](), with our early results and codebase using OpenRLHF and PPO.
 
 <div align="center">
 <img src="https://github.com/user-attachments/assets/bacd1680-ccb0-4921-a687-8a595ebf5896" width="700" alt="simplelr-reaoning-intro-figure_00">
@@ -18,13 +20,14 @@ This repo contains a simple reinforcement learning recipe to improve models' rea
 > Training dynamics of our Qwen2.5-SimpleRL-Zero training starting from the Qwen2.5-Math-7B, without SFT or reward models.
 
 ## News
+- **[2025/03/24]** We perform successful zero RL training starting from 10 diverse base models. We release all 10 models and the code, and share many findings and practices in our [paper]().   
 - **[2025/02/19]** We release checkpoints of [Qwen-2.5-Math-7B-SimpleRL-Zero](https://huggingface.co/hkust-nlp/Qwen-2.5-Math-7B-SimpleRL-Zero) and [Qwen-2.5-Math-7B-SimpleRL](https://huggingface.co/hkust-nlp/Qwen-2.5-Math-7B-SimpleRL) to Huggingface. 
 - **[2025/01/25]** We release the training/eval code and our blog. We are working on the paper and will release it very soon.
 
-## Introduction
-Many researchers are exploring possible paths towards learning o-style models, such as distillation, MCTS, process-based reward models, and reinforcement learning. Recently, both [DeepSeek-R1](https://github.com/deepseek-ai/DeepSeek-R1) and [Kimi-k1.5](https://github.com/MoonshotAI/Kimi-k1.5) demonstrate an extremely simple recipe on this path, using simple RL algorithms to learn emerging long CoT and self-reflection patterns and leading to strong results, where no MCTS and reward models are used. However, their experiments are based on  huge models in a large-scale RL setting. It remains unknown whether small models can demonstrate similar behaviors, how much data is needed, and how would the quantitative results compare with other approaches. We reproduce the training of DeepSeek-R1-Zero and DeepSeek-R1 for complex mathematical reasoning, starting from Qwen-2.5-Math-7B (base model), and only using 8K (query, final answer) examples from the original MATH dataset. We are surprised how far the 8K MATH examples lift this 7B base model without any other external signals:
+## Main Results
 
-***All results are in pass@1 accuracy***
+
+#### All results are in pass@1 accuracy
 
 
 |                            | AIME 2024 | MATH 500 | AMC  | Minerva Math | OlympiadBench | Avg.  |
@@ -38,21 +41,19 @@ Many researchers are exploring possible paths towards learning o-style models, s
 | Qwen2.5-7B-SimpleRL-Zero        | 33.3      | 77.2     | 62.5 | 33.5         | 37.6          | 48.8  |
 | Qwen2.5-7B-SimpleRL             | 26.7      | 82.4     | 62.5 | 39.7         | 43.3          | 50.9  |
 
-Qwen2.5-7B-SimpleRL-Zero is the simple RL training from the base model directly, using only 8K MATH examples. It achieves gains of nearly 20 absolute points on average compared to the base model. Moreover, it outperforms Qwen-2.5-Math-7B-Instruct on average, and is roughly comparable to the recently released [Eurus-2-7B-PRIME](https://github.com/PRIME-RL/PRIME) and [rStar-Math-7B](https://arxiv.org/abs/2501.04519) which are also based on Qwen-2.5-Math-7B. These baselines contain much more complicated components such as reward models and use at least 50x more and advanced data:
+<!-- #### Increase of Response Length does not always correspond to the "aha moment"
 
-***Data comparison of different approaches***
+#### Rigid Format Reward Harms Training of Some Base Models
+
+#### Pass@K Improves Significantly
+
+#### Traditional SFT as a Cold Start Harms RL -->
 
 
-|                   | Qwen2.5-Math-7B-Instruct | rStar-Math-7B | Eurus-2-7B-PRIME | Qwen2.5-7B-SimpleRL-Zero |
-|---------------------------|--------------------------|---------------|------------------|--------------------------|
-| **Base Model**            | Qwen2.5-Math-7B         | Qwen2.5-Math-7B | Qwen2.5-Math-7B  | Qwen2.5-Math-7B          |
-| **SFT Data**              | 2.5M (open-source and in-house) | ~7.3M (MATH, NuminaMath, etc.) | 230K | 0 |
-| **RM Data**               | 618K (in-house)         | ~7k (in-house) | 0                | 0                        |
-| **RM**                    | Qwen2.5-Math-RM (72B)   | None          | Eurus-2-7B-SFT   | None                     |
-| **RL Data**               | 66K queries × 32 samples | ~3.647M × 16  | 150K queries × 4 samples | 8K queries × 8 samples |
-
-We are both excited and surprised by the significant gains achieved using only 8K MATH examples. Notably, while the MATH queries are considerably easier than many challenging benchmarks such as AIME and AMC, this simple RL recipe demonstrates remarkable generalization, with performance increasing by at least 10 absolute points compared to the base model. This easy-to-hard generalization effect is something we could not have envisioned with standard SFT training on the same dataset. We fully open-source our training code and details, hopefully as a strong baseline setup for the community to further explore the potential of RL for reasoning.
-
+## Model Checkpoints
+|Model|Link|
+|-|-|
+|Llama-3.1-8B-SimpleRL|[🤗]()|
 
 ## Quick Start
 
@@ -95,11 +96,6 @@ ray job submit --address="http://127.0.0.1:8265" \
     }' -- /bin/bash examples/script/train_ppo_qwen_base_math_lv35_1_node.sh
 
 ```
-
-
-### Reproducing SimpleRL
-
-Comming Soon！
 
 
 ### Evaluate
