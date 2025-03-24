@@ -130,7 +130,7 @@ For other models, use the same command, adjusting the `--model_name` argument ac
 
 ### Evaluate
 
-We used [Qwen Math's codebase](https://github.com/QwenLM/Qwen2.5-Math/tree/main/evaluation) for evaluation, but for fairness considerations, we completely prohibited solving problems by calling code. Script `eval_math_nodes.sh` provides the full pipeline for evaluation and results collection and analysis. To run it, you need to specify some environment variables in the script. And then, you can run the script as follows.
+We used [Qwen Math's codebase](https://github.com/QwenLM/Qwen2.5-Math/tree/main/evaluation) for evaluation, but for fairness considerations, we completely prohibited solving problems by calling code. The `eval_math_nodes.sh` script provides the full pipeline for evaluation, results collection, and analysis. To use it, you'll need to specify a few environment variables within the script, and then run it as shown below:
 
 Example: 
 ```bash
@@ -147,11 +147,11 @@ bash eval_math_nodes.sh \
     --n_sampling 1 
 ```
 
-Then the evaluation results will be saved under `$RUN_NAME/eval_results` and the metrics in our paper (e.g. clip ratio, average_response_length, etc.) will be saved under `$RUN_NAME/eval_results/eval_results.csv`. 
+After running the script, the evaluation results will be saved in `$RUN_NAME/eval_results`, with the metrics from our paper (e.g., clip ratio, average response length, etc.) saved in `$RUN_NAME/eval_results/eval_results.csv`.
 
 ### Visualization
 
-To compare the response across training steps, we also provides visualization tool to show model's reasoning process across different steps and benchmarks using Gradio. You can run the script as follows:
+To compare the model's responses across different training steps, we offer a visualization tool that displays the model's reasoning process across various steps and benchmarks using Gradio. You can run the following script to access this tool:
 
 ```bash
 # install gradio and httpx
