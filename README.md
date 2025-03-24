@@ -88,7 +88,7 @@ This repo contains a simple reinforcement learning recipe to improve models' rea
 ## Model Checkpoints
 **We are open-sourcing all the Zero RL models as outlined below and will also release some of the intermediate checkpoints to support future research. Stay tuned for updates!**
 
-All these models are also in our Huggingface Collection. 
+All these models are also in our [Huggingface Collection](https://huggingface.co/collections/hkust-nlp/simplerl-zoo-67e0fd24c185423c1e3452d1). 
 |Model|Link|
 |-|-|
 |Mistral-7B-v0.1-SimpleRL-Zero|[🤗](https://huggingface.co/hkust-nlp/Mistral-7B-v0.1-SimpleRL-Zero)|
