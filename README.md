@@ -4,7 +4,7 @@
 
 # Simple Reinforcement Learning for Reasoning
 
-[![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)](https://hkust-nlp.notion.site/simplerl-reason) [![Hugging Face](https://img.shields.io/badge/SimpleRL-fcd022?style=for-the-badge&logo=Huggingface&logoColor=000)](https://huggingface.co/collections/hkust-nlp/simplerl-67b543892b2ec6908ffff710)
+[![Paper](https://img.shields.io/badge/paper-A42C25?style=for-the-badge&logo=arxiv&logoColor=white)](https://www.google.com)  [![Hugging Face](https://img.shields.io/badge/SimpleRL_Zoo-fcd022?style=for-the-badge&logo=Huggingface&logoColor=000)](https://huggingface.co/collections/hkust-nlp/simplerl-zoo-67e0fd24c185423c1e3452d1)
 
 </div>
 
@@ -23,6 +23,19 @@ This repo contains a simple reinforcement learning recipe to improve models' rea
 - **[2025/03/24]** We perform successful zero RL training starting from 10 diverse base models. We release all 10 models and the code, and share many findings and practices in our [paper]().   
 - **[2025/02/19]** We release checkpoints of [Qwen-2.5-Math-7B-SimpleRL-Zero](https://huggingface.co/hkust-nlp/Qwen-2.5-Math-7B-SimpleRL-Zero) and [Qwen-2.5-Math-7B-SimpleRL](https://huggingface.co/hkust-nlp/Qwen-2.5-Math-7B-SimpleRL) to Huggingface. 
 - **[2025/01/25]** We release the training/eval code and our blog. We are working on the paper and will release it very soon.
+
+
+## Links 
+
+* **Blog: 7B Model and 8K Examples: Emerging Reasoning with Reinforcement Learning is Both Effective and Efficient**
+  * 📝 [Blog](https://hkust-nlp.notion.site/simplerl-reason)
+  * 🤗 [Hugging Face Collection](https://huggingface.co/collections/hkust-nlp/simplerl-67b543892b2ec6908ffff710)
+  * 💻 [Github](https://github.com/hkust-nlp/simpleRL-reason/tree/main)
+
+* **Paper: SimpleRL-Zoo: Investigating and Taming Zero Reinforcement Learning for Open Base Models in the Wild**
+  * 📝 [Paper](https://www.google.com)
+  * 🤗 [Hugging Face Collection](https://huggingface.co/collections/hkust-nlp/simplerl-zoo-67e0fd24c185423c1e3452d1)
+  * 💻 [Github](https://github.com/hkust-nlp/simpleRL-reason/tree/v1)
 
 ## Main Results
 
@@ -73,12 +86,21 @@ This repo contains a simple reinforcement learning recipe to improve models' rea
 
 
 ## Model Checkpoints
-We are open-sourcing all the Zero RL models as outlined below and will also release some of the intermediate checkpoints to support future research. Stay tuned for updates! 
+**We are open-sourcing all the Zero RL models as outlined below and will also release some of the intermediate checkpoints to support future research. Stay tuned for updates!**
 
 All these models are also in our Huggingface Collection. 
 |Model|Link|
 |-|-|
-|Llama-3.1-8B-SimpleRL|[🤗]()|
+|Mistral-7B-v0.1-SimpleRL-Zero|[🤗](https://huggingface.co/hkust-nlp/Mistral-7B-v0.1-SimpleRL-Zero)|
+|Llama-3.1-8B-SimpleRL-Zero|[🤗](https://huggingface.co/hkust-nlp/Llama-3.1-8B-SimpleRL-Zero)|
+|DeepSeek-Math-7B-SimpleRL-Zero|[🤗](https://huggingface.co/hkust-nlp/DeepSeek-Math-7B-SimpleRL-Zero)|
+|Mistral-Small-24B-SimpleRL-Zero|[🤗](https://huggingface.co/hkust-nlp/Mistral-Small-24B-SimpleRL-Zero)|
+|Qwen-2.5-0.5B-SimpleRL-Zero|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-0.5B-SimpleRL-Zero)|
+|Qwen-2.5-1.5B-SimpleRL-Zero|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-1.5B-SimpleRL-Zero)|
+|Qwen-2.5-7B-SimpleRL-Zero|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-7B-SimpleRL-Zero)|
+|Qwen-2.5-14B-SimpleRL-Zero|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-14B-SimpleRL-Zero)|
+|Qwen-2.5-32B-SimpleRL-Zero|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-32B-SimpleRL-Zero)|
+|Qwen-2.5-Math-7B-SimpleRL-Zero|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-Math-7B-SimpleRL-Zero-grpo)|
 
 
 
