@@ -120,9 +120,25 @@ class vLLMRollout(BaseRollout):
             kwargs['detokenize'] = False
 
         if "mistral" in config.model_path.lower():
-            kwargs['stop_token_ids'] = [23836, 19464, 3263, 18993] # _end, istant, user, _start
+            if "24b" in config.model_path.lower():
+                kwargs['stop_token_ids'] = [23836, 19464, 3263, 18993] # _end, istant, user, _start
+            elif "7b-v0.1" in config.model_path.lower():
+                kwargs['stop_token_ids'] = [22478, 24994, 26307, 9977, 933, 2820] # Question, Answer, \nStep
         elif "llama" in config.model_path.lower():
-            kwargs['stop_token_ids'] = [14924, 16533]
+            kwargs['stop_token_ids'] = [14924, 16533] #Question, Answer
+        elif "deepseek-math" in  config.model_path.lower():
+            kwargs['stop_token_ids'] = [3631, 81038, 5726, 77398, 6713] # user, assistant, system
+        elif "qwen2.5" in config.model_path.lower():
+            if "7b" in config.model_path.lower():
+                kwargs['stop_token_ids'] = [151645, 151643, 872,77091, 1474, 71703, 151644, 8948]
+                if "math" in config.model_path.lower():
+                    kwargs['stop_token_ids'] = [151645, 151643, 872, 77091, 1474, 71703, 151644, 8948, 73594]
+                    
+            elif "1.5b" in config.model_path.lower():
+                kwargs['stop_token_ids'] = [14582, 16141, 31198] # Question, Answer, Problem
+            elif "0.5b" in config.model_path.lower():
+                kwargs['stop_token_ids'] = [14582, 16141, 31198] # Question, Answer, Problem
+                
         # supporting adding any sampling params from the config file
         for k in config.keys():
             if hasattr(SamplingParams(), str(k)):
