@@ -93,16 +93,16 @@ This repo contains a simple reinforcement learning recipe to improve models' rea
 All these models are also in our [Huggingface Collection](https://huggingface.co/collections/hkust-nlp/simplerl-zoo-67e0fd24c185423c1e3452d1). 
 |Model|Link|
 |-|-|
-|Mistral-7B-v0.1-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Mistral-7B-v0.1-SimpleRL-Zero)|
-|Llama-3.1-8B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Llama-3.1-8B-SimpleRL-Zero)|
-|DeepSeek-Math-7B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/DeepSeek-Math-7B-SimpleRL-Zero)|
-|Mistral-Small-24B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Mistral-Small-24B-SimpleRL-Zero)|
-|Qwen-2.5-0.5B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-0.5B-SimpleRL-Zero)|
-|Qwen-2.5-1.5B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-1.5B-SimpleRL-Zero)|
-|Qwen-2.5-7B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-7B-SimpleRL-Zero)|
-|Qwen-2.5-14B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-14B-SimpleRL-Zero)|
-|Qwen-2.5-32B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-32B-SimpleRL-Zero)|
-|Qwen-2.5-Math-7B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-Math-7B-SimpleRL-Zero-grpo)|
+|Mistral-7B-v0.1-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Mistral-7B-v0.1-SimpleRL-Zoo)|
+|Llama-3.1-8B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Llama-3.1-8B-SimpleRL-Zoo)|
+|DeepSeek-Math-7B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/DeepSeek-Math-7B-SimpleRL-Zoo)|
+|Mistral-Small-24B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Mistral-Small-24B-SimpleRL-Zoo)|
+|Qwen-2.5-0.5B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-0.5B-SimpleRL-Zoo)|
+|Qwen-2.5-1.5B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-1.5B-SimpleRL-Zoo)|
+|Qwen-2.5-7B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-7B-SimpleRL-Zoo)|
+|Qwen-2.5-14B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-14B-SimpleRL-Zoo)|
+|Qwen-2.5-32B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-32B-SimpleRL-Zoo)|
+|Qwen-2.5-Math-7B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-Math-7B-SimpleRL-Zoo)|
 
 
 
