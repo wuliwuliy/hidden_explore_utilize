@@ -11,7 +11,7 @@
 
 This repo contains a simple reinforcement learning recipe to improve models' reasoning abilities. It is simple because only rule-based reward and GSM8K/Math datasets are used. We have used this code to successfully train 10 diverse base models with limited data (8K examples), achieving surprisingly strong results -- the accuracy gains range from 10 to more than 20 absolute points. These models include Llama3 8B, Mistral 7B/24B, DeepSeekMath 7B, Qwen2.5 0.5B/1.5B/7B/14B/32B, and Qwen2.5-Math-7B. While we observe significant increase in both response length and accuracy, we note that different models exhibit distinct reasoning behaviors during training, and the increased response length does not necessarily correlate with emergence of certain cognitive behaviors such as self-verification. We share many findings and practices in our paper, and we release the code, model checkpoints, and analysis tools here. 
 
-> You may find an old version of this repo [here](), with our early results and codebase using OpenRLHF and PPO.
+> You may find an old version of this repo [here](https://github.com/hkust-nlp/simpleRL-reason/tree/main), with our early results and codebase using OpenRLHF and PPO.
 
 <div align="center">
 <img src="assets/plot_figure1_v2.3_token_length_vs_steps.png" width="700" alt="simplelr-reaoning-intro-figure_00">
@@ -27,15 +27,17 @@ This repo contains a simple reinforcement learning recipe to improve models' rea
 
 ## Links 
 
+* **Paper: SimpleRL-Zoo: Investigating and Taming Zero Reinforcement Learning for Open Base Models in the Wild**
+  * 📝 [Paper](https://www.google.com)
+  * 🤗 [Hugging Face Collection](https://huggingface.co/collections/hkust-nlp/simplerl-zoo-67e0fd24c185423c1e3452d1)
+  * 💻 [Github](https://github.com/hkust-nlp/simpleRL-reason/tree/v1)
+
 * **Blog: 7B Model and 8K Examples: Emerging Reasoning with Reinforcement Learning is Both Effective and Efficient**
   * 📝 [Blog](https://hkust-nlp.notion.site/simplerl-reason)
   * 🤗 [Hugging Face Collection](https://huggingface.co/collections/hkust-nlp/simplerl-67b543892b2ec6908ffff710)
   * 💻 [Github](https://github.com/hkust-nlp/simpleRL-reason/tree/main)
 
-* **Paper: SimpleRL-Zoo: Investigating and Taming Zero Reinforcement Learning for Open Base Models in the Wild**
-  * 📝 [Paper](https://www.google.com)
-  * 🤗 [Hugging Face Collection](https://huggingface.co/collections/hkust-nlp/simplerl-zoo-67e0fd24c185423c1e3452d1)
-  * 💻 [Github](https://github.com/hkust-nlp/simpleRL-reason/tree/v1)
+
 
 ## Main Results
 
@@ -44,8 +46,8 @@ This repo contains a simple reinforcement learning recipe to improve models' rea
 |:--------------------------:|:-----:|:--------:|:------------:|:--------------:|:----------------:|:----------------:|:-----:|:----:|
 | DeepSeek-Math-7B           |  28.4 |   19.4   |      5.5     |       4.7      |        0.0       |        0.0       |  10.0 | 11.3 |
 | Llama-3.1-8B               |  39.7 |   13.6   |      4.8     |       3.1      |        0.0       |        0.2       |  2.5  | 10.6 |
-| DeepSeek-Math-7B-SimpleRL  |  78.5 |   39.6   |     21.0     |      12.6      |        3.3       |        0.6       |  20.0 | 29.2 |
-| Llama-3.1-8B-SimpleRL      |  79.2 |   23.0   |      9.6     |       5.3      |        0.0       |        0.2       |  15.0 | 22.0 |
+| DeepSeek-Math-7B-SimpleRL-Zoo  |  78.5 |   39.6   |     21.0     |      12.6      |        3.3       |        0.6       |  20.0 | 29.2 |
+| Llama-3.1-8B-SimpleRL-Zoo      |  79.2 |   23.0   |      9.6     |       5.3      |        0.0       |        0.2       |  15.0 | 22.0 |
 
 
 ### Mistral Series Model
@@ -54,8 +56,8 @@ This repo contains a simple reinforcement learning recipe to improve models' rea
 |:-------------------------------:|:-----:|:--------:|:------------:|:--------------:|:----------------:|:----------------:|:-----:|:----:|
 | Mistral-v0.1-7B                 |  21.2 |    4.2   |      4.0     |       2.4      |        0.0       |        0.0       |  0.0  |  5.3 |
 | Mistral-Small-24B               |  78.6 |   43.6   |     10.7     |      11.6      |        3.3       |        0.5       |  17.5 | 27.6 |
-| Mistral-v0.1-7B-SimpleRL        |  75.0 |   15.8   |      6.6     |       4.1      |        0.0       |        0.2       |  10.0 | 18.6 |
-| Mistral-Small-24B-SimpleRL      |  92.0 |   70.6   |     36.8     |      36.6      |       16.7       |       13.1       |  45.0 | 49.6 |
+| Mistral-v0.1-7B-SimpleRL-Zoo        |  75.0 |   15.8   |      6.6     |       4.1      |        0.0       |        0.2       |  10.0 | 18.6 |
+| Mistral-Small-24B-SimpleRL-Zoo      |  92.0 |   70.6   |     36.8     |      36.6      |       16.7       |       13.1       |  45.0 | 49.6 |
 
 
 ### Qwen Series Model
@@ -68,12 +70,12 @@ This repo contains a simple reinforcement learning recipe to improve models' rea
 | Qwen-2.5-14B                    |  91.6 |   65.4   |     24.3     |      33.5      |        6.7       |        3.4       |  37.5 | 43.2 |
 | Qwen-2.5-32B                    |  92.9 |   68.6   |     27.9     |      31.1      |       10.0       |        4.5       |  45.0 | 45.9 |
 | Qwen-2.5-Math-7B                |  65.5 |   63.6   |     12.5     |      25.8      |       13.3       |        8.6       |  42.5 | 37.2 |
-| Qwen-2.5-0.5B-SimpleRL          |  49.5 |   34.4   |     10.3     |       8.9      |        0.0       |        0.7       |  22.5 | 20.9 |
-| Qwen-2.5-1.5B-SimpleRL          |  74.4 |   59.0   |     20.2     |      21.0      |        6.7       |        4.2       |  35.0 | 36.1 |
-| Qwen-2.5-7B-SimpleRL            |  91.7 |   78.2   |     38.6     |      40.4      |       20.0       |       15.6       |  62.5 | 55.2 |
-| Qwen-2.5-14B-SimpleRL           |  94.4 |   80.2   |     40.4     |      44.9      |       23.3       |       14.2       |  57.6 | 56.8 |
-| Qwen-2.5-32B-SimpleRL           |  95.9 |   82.4   |     42.6     |      46.4      |       36.7       |       27.2       |  67.5 | 61.9 |
-| Qwen-2.5-Math-7B-SimpleRL       |  90.2 |   80.2   |     37.5     |      39.0      |       40.0       |       24.0       |  70.0 | 59.5 |
+| Qwen-2.5-0.5B-SimpleRL-Zoo          |  49.5 |   34.4   |     10.3     |       8.9      |        0.0       |        0.7       |  22.5 | 20.9 |
+| Qwen-2.5-1.5B-SimpleRL-Zoo          |  74.4 |   59.0   |     20.2     |      21.0      |        6.7       |        4.2       |  35.0 | 36.1 |
+| Qwen-2.5-7B-SimpleRL-Zoo            |  91.7 |   78.2   |     38.6     |      40.4      |       20.0       |       15.6       |  62.5 | 55.2 |
+| Qwen-2.5-14B-SimpleRL-Zoo           |  94.4 |   80.2   |     40.4     |      44.9      |       23.3       |       14.2       |  57.6 | 56.8 |
+| Qwen-2.5-32B-SimpleRL-Zoo           |  95.9 |   82.4   |     42.6     |      46.4      |       36.7       |       27.2       |  67.5 | 61.9 |
+| Qwen-2.5-Math-7B-SimpleRL-Zoo       |  90.2 |   80.2   |     37.5     |      39.0      |       40.0       |       24.0       |  70.0 | 59.5 |
 
 > AIME is evaluated in two ways: Pass@1 (single run) and Avg@32 (average score from 32 runs). For AIME24 (Pass@1) and other benchmarks, baselines use greedy decoding, and models with ”zero RL training” use temperature=1 and top-p=0.95. For AIME24 (Avg@32), we sample 32 responses per model with the same settings. Average scores are based on AIME (Avg@1) and other benchmarks.
 <!-- #### Increase of Response Length does not always correspond to the "aha moment"
@@ -91,16 +93,16 @@ This repo contains a simple reinforcement learning recipe to improve models' rea
 All these models are also in our [Huggingface Collection](https://huggingface.co/collections/hkust-nlp/simplerl-zoo-67e0fd24c185423c1e3452d1). 
 |Model|Link|
 |-|-|
-|Mistral-7B-v0.1-SimpleRL-Zero|[🤗](https://huggingface.co/hkust-nlp/Mistral-7B-v0.1-SimpleRL-Zero)|
-|Llama-3.1-8B-SimpleRL-Zero|[🤗](https://huggingface.co/hkust-nlp/Llama-3.1-8B-SimpleRL-Zero)|
-|DeepSeek-Math-7B-SimpleRL-Zero|[🤗](https://huggingface.co/hkust-nlp/DeepSeek-Math-7B-SimpleRL-Zero)|
-|Mistral-Small-24B-SimpleRL-Zero|[🤗](https://huggingface.co/hkust-nlp/Mistral-Small-24B-SimpleRL-Zero)|
-|Qwen-2.5-0.5B-SimpleRL-Zero|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-0.5B-SimpleRL-Zero)|
-|Qwen-2.5-1.5B-SimpleRL-Zero|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-1.5B-SimpleRL-Zero)|
-|Qwen-2.5-7B-SimpleRL-Zero|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-7B-SimpleRL-Zero)|
-|Qwen-2.5-14B-SimpleRL-Zero|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-14B-SimpleRL-Zero)|
-|Qwen-2.5-32B-SimpleRL-Zero|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-32B-SimpleRL-Zero)|
-|Qwen-2.5-Math-7B-SimpleRL-Zero|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-Math-7B-SimpleRL-Zero-grpo)|
+|Mistral-7B-v0.1-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Mistral-7B-v0.1-SimpleRL-Zero)|
+|Llama-3.1-8B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Llama-3.1-8B-SimpleRL-Zero)|
+|DeepSeek-Math-7B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/DeepSeek-Math-7B-SimpleRL-Zero)|
+|Mistral-Small-24B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Mistral-Small-24B-SimpleRL-Zero)|
+|Qwen-2.5-0.5B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-0.5B-SimpleRL-Zero)|
+|Qwen-2.5-1.5B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-1.5B-SimpleRL-Zero)|
+|Qwen-2.5-7B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-7B-SimpleRL-Zero)|
+|Qwen-2.5-14B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-14B-SimpleRL-Zero)|
+|Qwen-2.5-32B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-32B-SimpleRL-Zero)|
+|Qwen-2.5-Math-7B-SimpleRL-Zoo|[🤗](https://huggingface.co/hkust-nlp/Qwen-2.5-Math-7B-SimpleRL-Zero-grpo)|
 
 
 
