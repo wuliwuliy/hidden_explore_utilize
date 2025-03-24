@@ -11,7 +11,7 @@
 
 This repo contains a simple reinforcement learning recipe to improve models' reasoning abilities. It is simple because only rule-based reward and GSM8K/Math datasets are used. We have used this code to successfully train 10 diverse base models with limited data (8K examples), achieving surprisingly strong results -- the accuracy gains range from 10 to more than 20 absolute points. These models include Llama3 8B, Mistral 7B/24B, DeepSeekMath 7B, Qwen2.5 0.5B/1.5B/7B/14B/32B, and Qwen2.5-Math-7B. While we observe significant increase in both response length and accuracy, we note that different models exhibit distinct reasoning behaviors during training, and the increased response length does not necessarily correlate with emergence of certain cognitive behaviors such as self-verification. We share many findings and practices in our paper, and we release the code, model checkpoints, and analysis tools here. 
 
-> You may find an old version of this repo [here](https://github.com/hkust-nlp/simpleRL-reason/tree/main), with our early results and codebase using OpenRLHF and PPO.
+> You may find an old version of this repo [here](https://github.com/hkust-nlp/simpleRL-reason/tree/v0), with our early results and codebase using OpenRLHF and PPO.
 
 <div align="center">
 <img src="assets/plot_figure1_v2.3_token_length_vs_steps.png" width="700" alt="simplelr-reaoning-intro-figure_00">
@@ -35,7 +35,7 @@ This repo contains a simple reinforcement learning recipe to improve models' rea
 * **Blog: 7B Model and 8K Examples: Emerging Reasoning with Reinforcement Learning is Both Effective and Efficient**
   * 📝 [Blog](https://hkust-nlp.notion.site/simplerl-reason)
   * 🤗 [Hugging Face Collection](https://huggingface.co/collections/hkust-nlp/simplerl-67b543892b2ec6908ffff710)
-  * 💻 [Github](https://github.com/hkust-nlp/simpleRL-reason/tree/main)
+  * 💻 [Github](https://github.com/hkust-nlp/simpleRL-reason/tree/v0)
 
 
 
