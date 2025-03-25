@@ -41,23 +41,17 @@ This repo contains a simple reinforcement learning recipe to improve models' rea
 
 ## Main Results
 
-### Llama and DeepSeek Series Model
+### Mistral, Llama and DeepSeek Models
 |            Model           | GSM8K | MATH 500 | Minerva Math | Olympiad Bench | AIME24  (Pass@1) | AIME24  (Avg@32) | AMC23 | Avg. |
 |:--------------------------:|:-----:|:--------:|:------------:|:--------------:|:----------------:|:----------------:|:-----:|:----:|
-| DeepSeek-Math-7B           |  28.4 |   19.4   |      5.5     |       4.7      |        0.0       |        0.0       |  10.0 | 11.3 |
-| Llama-3.1-8B               |  39.7 |   13.6   |      4.8     |       3.1      |        0.0       |        0.2       |  2.5  | 10.6 |
-| DeepSeek-Math-7B-SimpleRL-Zoo  |  78.5 |   39.6   |     21.0     |      12.6      |        3.3       |        0.6       |  20.0 | 29.2 |
-| Llama-3.1-8B-SimpleRL-Zoo      |  79.2 |   23.0   |      9.6     |       5.3      |        0.0       |        0.2       |  15.0 | 22.0 |
-
-
-### Mistral Series Model
-
-|              Model              | GSM8K | MATH 500 | Minerva Math | Olympiad Bench | AIME24  (Pass@1) | AIME24  (Avg@32) | AMC23 | Avg. |
-|:-------------------------------:|:-----:|:--------:|:------------:|:--------------:|:----------------:|:----------------:|:-----:|:----:|
 | Mistral-v0.1-7B                 |  21.2 |    4.2   |      4.0     |       2.4      |        0.0       |        0.0       |  0.0  |  5.3 |
+| 🦁 Mistral-v0.1-7B + SimpleRL-Zoo   |  75.0 |   15.8   |      6.6     |       4.1      |        0.0       |        0.2       |  10.0 | 18.6 |
+| Llama-3.1-8B               |  39.7 |   13.6   |      4.8     |       3.1      |        0.0       |        0.2       |  2.5  | 10.6 |
+| 🦁 Llama-3.1-8B + SimpleRL-Zoo  |  79.2 |   23.0   |      9.6     |       5.3      |        0.0       |        0.2       |  15.0 | 22.0 |
+| DeepSeek-Math-7B           |  28.4 |   19.4   |      5.5     |       4.7      |        0.0       |        0.0       |  10.0 | 11.3 |
+| 🦁 DeepSeek-Math-7B + SimpleRL-Zoo  |  78.5 |   39.6   |     21.0     |      12.6      |        3.3       |        0.6       |  20.0 | 29.2 |
 | Mistral-Small-24B               |  78.6 |   43.6   |     10.7     |      11.6      |        3.3       |        0.5       |  17.5 | 27.6 |
-| Mistral-v0.1-7B-SimpleRL-Zoo        |  75.0 |   15.8   |      6.6     |       4.1      |        0.0       |        0.2       |  10.0 | 18.6 |
-| Mistral-Small-24B-SimpleRL-Zoo      |  92.0 |   70.6   |     36.8     |      36.6      |       16.7       |       13.1       |  45.0 | 49.6 |
+| 🦁 Mistral-Small-24B + SimpleRL-Zoo    |  92.0 |   70.6   |     36.8     |      36.6      |       16.7       |       13.1       |  45.0 | 49.6 |
 
 
 ### Qwen Series Model
@@ -65,17 +59,17 @@ This repo contains a simple reinforcement learning recipe to improve models' rea
 |              Model              | GSM8K | MATH 500 | Minerva Math | Olympiad Bench | AIME24  (Pass@1) | AIME24  (Avg@32) | AMC23 | Avg. |
 |:-------------------------------:|:-----:|:--------:|:------------:|:--------------:|:----------------:|:----------------:|:-----:|:----:|
 | Qwen-2.5-0.5B                   |  36.7 |   15.8   |      4.8     |       2.8      |        0.0       |        0.3       |  12.5 | 12.1 |
+| 🦁 Qwen-2.5-0.5B + SimpleRL-Zoo          |  49.5 |   34.4   |     10.3     |       8.9      |        0.0       |        0.7       |  22.5 | 20.9 |
 | Qwen-2.5-1.5B                   |  55.7 |   29.6   |      6.6     |       6.5      |        0.0       |        0.1       |  12.5 | 18.5 |
+| 🦁 Qwen-2.5-1.5B + SimpleRL-Zoo          |  74.4 |   59.0   |     20.2     |      21.0      |        6.7       |        4.2       |  35.0 | 36.1 |
 | Qwen-2.5-7B                     |  88.2 |   64.6   |     25.7     |      30.1      |        3.3       |        0.3       |  30.0 | 40.3 |
-| Qwen-2.5-14B                    |  91.6 |   65.4   |     24.3     |      33.5      |        6.7       |        3.4       |  37.5 | 43.2 |
-| Qwen-2.5-32B                    |  92.9 |   68.6   |     27.9     |      31.1      |       10.0       |        4.5       |  45.0 | 45.9 |
+| 🦁 Qwen-2.5-7B + SimpleRL-Zoo            |  91.7 |   78.2   |     38.6     |      40.4      |       20.0       |       15.6       |  62.5 | 55.2 |
 | Qwen-2.5-Math-7B                |  65.5 |   63.6   |     12.5     |      25.8      |       13.3       |        8.6       |  42.5 | 37.2 |
-| Qwen-2.5-0.5B-SimpleRL-Zoo          |  49.5 |   34.4   |     10.3     |       8.9      |        0.0       |        0.7       |  22.5 | 20.9 |
-| Qwen-2.5-1.5B-SimpleRL-Zoo          |  74.4 |   59.0   |     20.2     |      21.0      |        6.7       |        4.2       |  35.0 | 36.1 |
-| Qwen-2.5-7B-SimpleRL-Zoo            |  91.7 |   78.2   |     38.6     |      40.4      |       20.0       |       15.6       |  62.5 | 55.2 |
-| Qwen-2.5-14B-SimpleRL-Zoo           |  94.4 |   80.2   |     40.4     |      44.9      |       23.3       |       14.2       |  57.6 | 56.8 |
-| Qwen-2.5-32B-SimpleRL-Zoo           |  95.9 |   82.4   |     42.6     |      46.4      |       36.7       |       27.2       |  67.5 | 61.9 |
-| Qwen-2.5-Math-7B-SimpleRL-Zoo       |  90.2 |   80.2   |     37.5     |      39.0      |       40.0       |       24.0       |  70.0 | 59.5 |
+| 🦁 Qwen-2.5-Math-7B + SimpleRL-Zoo       |  90.2 |   80.2   |     37.5     |      39.0      |       40.0       |       24.0       |  70.0 | 59.5 |
+| Qwen-2.5-14B                    |  91.6 |   65.4   |     24.3     |      33.5      |        6.7       |        3.4       |  37.5 | 43.2 |
+| 🦁 Qwen-2.5-14B + SimpleRL-Zoo           |  94.4 |   80.2   |     40.4     |      44.9      |       23.3       |       14.2       |  57.6 | 56.8 |
+| Qwen-2.5-32B                    |  92.9 |   68.6   |     27.9     |      31.1      |       10.0       |        4.5       |  45.0 | 45.9 |
+| 🦁 Qwen-2.5-32B + SimpleRL-Zoo           |  95.9 |   82.4   |     42.6     |      46.4      |       36.7       |       27.2       |  67.5 | 61.9 |
 
 > AIME is evaluated in two ways: Pass@1 (single run) and Avg@32 (average score from 32 runs). For AIME24 (Pass@1) and other benchmarks, baselines use greedy decoding, and models with ”zero RL training” use temperature=1 and top-p=0.95. For AIME24 (Avg@32), we sample 32 responses per model with the same settings. Average scores are based on AIME (Avg@1) and other benchmarks.
 <!-- #### Increase of Response Length does not always correspond to the "aha moment"
@@ -123,7 +117,8 @@ pip3 install -e .
 
 To install from docker image or utilize Megatron-lm, please refer to [Verl's documentation](https://verl.readthedocs.io/en/v0.2.x/start/install.html).
 
-### Reproducing SimpleRL-Zero
+### Reproducing SimpleRL-Zoo
+
 The minimum hardware requirement for training Qwen-2.5-0.5B is a single H/A100-80G GPU. To accelerate our experiments, we utilized 2x8 H100-80G GPUs to train 7B and 14B models for approximately 100 steps over 15 hours using 8K examples. For training the 32B models, we used 8x8 H100-80G GPUs, completing the training in 1.5 days with the same dataset.
 
 The training process leverages GRPO with Ray and vLLM for acceleration. So firstly, you need to launch the ray cluster using the command below:
