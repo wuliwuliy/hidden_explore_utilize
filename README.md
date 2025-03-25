@@ -189,16 +189,6 @@ bash launch_gradio.sh \
 
 If you find our paper/blog or our code useful, we would appreciate it if you could cite our work:
 
-Cite our blog:
-```bibtex
-@misc{zeng2025simplerl,
-      title={7B Model and 8K Examples: Emerging Reasoning with Reinforcement Learning is Both Effective and Efficient},
-      author={Weihao Zeng and Yuzhen Huang and Wei Liu and Keqing He and Qian Liu and Zejun Ma and Junxian He},
-      year={2025},
-      howpublished={\url{https://hkust-nlp.notion.site/simplerl-reason}},
-      note={Notion Blog}
-}
-```
 Cite our paper:
 ```bibtex
 @misc{zeng2025simplerlzooinvestigatingtamingzero,
@@ -211,6 +201,19 @@ Cite our paper:
       url={https://arxiv.org/abs/2503.18892}, 
 }
 ```
+
+
+Cite our blog:
+```bibtex
+@misc{zeng2025simplerl,
+      title={7B Model and 8K Examples: Emerging Reasoning with Reinforcement Learning is Both Effective and Efficient},
+      author={Weihao Zeng and Yuzhen Huang and Wei Liu and Keqing He and Qian Liu and Zejun Ma and Junxian He},
+      year={2025},
+      howpublished={\url{https://hkust-nlp.notion.site/simplerl-reason}},
+      note={Notion Blog}
+}
+```
+
 
 ## Acknowledgement
 We implement our reinforcement learning algorithm extending from [Verl](https://github.com/volcengine/verl). We utilize [vLLM](https://github.com/vllm-project/vllm) for inference and develop evaluation scripts based on [Qwen2.5-Math](https://github.com/QwenLM/Qwen2.5-Math/tree/main/evaluation). Particularly, we thank the developers of DeepSeek-R1 and Kimi-k1.5 for their innovation and contribution to the open-source community.
