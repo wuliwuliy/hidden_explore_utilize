@@ -4,7 +4,7 @@
 
 # Simple Reinforcement Learning for Reasoning
 
-[![Paper](https://img.shields.io/badge/paper-A42C25?style=for-the-badge&logo=arxiv&logoColor=white)](https://www.google.com)  [![Hugging Face](https://img.shields.io/badge/SimpleRL_Zoo-fcd022?style=for-the-badge&logo=Huggingface&logoColor=000)](https://huggingface.co/collections/hkust-nlp/simplerl-zoo-67e0fd24c185423c1e3452d1)
+[![Paper](https://img.shields.io/badge/paper-A42C25?style=for-the-badge&logo=arxiv&logoColor=white)](https://arxiv.org/abs/2503.18892)  [![Hugging Face](https://img.shields.io/badge/SimpleRL_Zoo-fcd022?style=for-the-badge&logo=Huggingface&logoColor=000)](https://huggingface.co/collections/hkust-nlp/simplerl-zoo-67e0fd24c185423c1e3452d1)
 
 </div>
 
@@ -20,7 +20,7 @@ This repo contains a simple reinforcement learning recipe to improve models' rea
 > Accuracy and response length across training iterations for different models. Training starts from base models without any SFT. 
 
 ## News
-- **[2025/03/24]** We perform successful zero RL training starting from 10 diverse base models. We release all 10 models and the code, and share many findings and practices in our [paper]().   
+- **[2025/03/24]** We perform successful zero RL training starting from 10 diverse base models. We release all 10 models and the code, and share many findings and practices in our [paper](https://arxiv.org/abs/2503.18892).   
 - **[2025/02/19]** We release checkpoints of [Qwen-2.5-Math-7B-SimpleRL-Zero](https://huggingface.co/hkust-nlp/Qwen-2.5-Math-7B-SimpleRL-Zero) and [Qwen-2.5-Math-7B-SimpleRL](https://huggingface.co/hkust-nlp/Qwen-2.5-Math-7B-SimpleRL) to Huggingface. 
 - **[2025/01/25]** We release the training/eval code and our blog. We are working on the paper and will release it very soon.
 
@@ -28,7 +28,7 @@ This repo contains a simple reinforcement learning recipe to improve models' rea
 ## Links 
 
 * **Paper: SimpleRL-Zoo: Investigating and Taming Zero Reinforcement Learning for Open Base Models in the Wild**
-  * 📝 [Paper](https://www.google.com)
+  * 📝 [Paper](https://arxiv.org/abs/2503.18892)
   * 🤗 [Hugging Face Collection](https://huggingface.co/collections/hkust-nlp/simplerl-zoo-67e0fd24c185423c1e3452d1)
   * 💻 [Github](https://github.com/hkust-nlp/simpleRL-reason/tree/v1)
 
@@ -197,16 +197,24 @@ If you find our paper/blog or our code useful, we would appreciate it if you cou
 Cite our blog:
 ```bibtex
 @misc{zeng2025simplerl,
-  title={7B Model and 8K Examples: Emerging Reasoning with Reinforcement Learning is Both Effective and Efficient},
-  author={Weihao Zeng and Yuzhen Huang and Wei Liu and Keqing He and Qian Liu and Zejun Ma and Junxian He},
-  year={2025},
-  howpublished={\url{https://hkust-nlp.notion.site/simplerl-reason}},
-  note={Notion Blog}
+      title={7B Model and 8K Examples: Emerging Reasoning with Reinforcement Learning is Both Effective and Efficient},
+      author={Weihao Zeng and Yuzhen Huang and Wei Liu and Keqing He and Qian Liu and Zejun Ma and Junxian He},
+      year={2025},
+      howpublished={\url{https://hkust-nlp.notion.site/simplerl-reason}},
+      note={Notion Blog}
 }
 ```
 Cite our paper:
 ```bibtex
-TBD
+@misc{zeng2025simplerlzooinvestigatingtamingzero,
+      title={SimpleRL-Zoo: Investigating and Taming Zero Reinforcement Learning for Open Base Models in the Wild}, 
+      author={Weihao Zeng and Yuzhen Huang and Qian Liu and Wei Liu and Keqing He and Zejun Ma and Junxian He},
+      year={2025},
+      eprint={2503.18892},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2503.18892}, 
+}
 ```
 
 ## Acknowledgement
