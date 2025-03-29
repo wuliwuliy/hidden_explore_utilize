@@ -16,6 +16,7 @@ export HDFS_MODEL_PATH=TO_BE_FILLED
 export HDFS_CHECKPOINT_PATH=TO_BE_FILLED
 export HDFS_LOG_PATH=TO_BE_FILLED
 export RUN_NAME=verl-grpo
+export ARNOLD_WORKER_NUM=TO_BE_FILLED # number of nodes you want to use 
 
 
 # Default values
