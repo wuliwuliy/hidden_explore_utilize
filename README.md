@@ -119,6 +119,24 @@ To install from docker image or utilize Megatron-lm, please refer to [Verl's doc
 
 ### Reproducing SimpleRL-Zoo
 
+
+#### Dataset
+
+As mentioned in [our paper](http://arxiv.org/abs/2503.18892), our data includes three difficulty levels: Easy (GSM8K and MATH lv.1), Medium (MATH lv.1-4), and Hard (MATH lv.3-5). We have processed the data into two formats: simpler prompts (abel) and complex prompts (qwen), ready to use:
+
+
+just download the [dataset](https://huggingface.co/datasets/hkust-nlp/SimpleRL-Zoo-Data) directly. E.g,
+
+```
+wget https://huggingface.co/datasets/hkust-nlp/SimpleRL-Zoo-Data/resolve/main/simplelr_qwen_level3to5/train.parquet
+wget https://huggingface.co/datasets/hkust-nlp/SimpleRL-Zoo-Data/resolve/main/simplelr_qwen_level3to5/test.parquet
+```
+See the other folders for the other splits.
+
+
+#### Training
+
+
 The minimum hardware requirement for training Qwen-2.5-0.5B is a single H/A100-80G GPU. To accelerate our experiments, we utilized 2x8 H100-80G GPUs to train 7B and 14B models for approximately 100 steps over 15 hours using 8K examples. For training the 32B models, we used 8x8 H100-80G GPUs, completing the training in 1.5 days with the same dataset.
 
 The training process leverages GRPO with Ray and vLLM for acceleration. So firstly, you need to launch the ray cluster using the command below:
