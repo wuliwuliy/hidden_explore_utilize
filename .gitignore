@@ -1,3 +1,10 @@
+# hgb add↓
+custom/
+/home/hfd24/simpleRL-reason/examples/simplelr_math_eval/data
+
+# hgb add↑
+
+
 **/*.pt
 **/checkpoints
 **/wget-log

@@ -5,12 +5,13 @@
 cd examples/simplelr_math_eval
 pip uninstall latex2sympy2 -y
 cd latex2sympy
-pip install -e . --use-pep517
-pip install Pebble
-pip install sympy==1.12
-pip install antlr4-python3-runtime==4.11.1
-pip install timeout-decorator
-pip install jieba
+pip install -e . --use-pep517 -i https://mirrors.aliyun.com/pypi/simple/
+pip install Pebble -i https://mirrors.aliyun.com/pypi/simple/
+pip install sympy==1.12 -i https://mirrors.aliyun.com/pypi/simple/
+pip install antlr4-python3-runtime==4.11.1 -i https://mirrors.aliyun.com/pypi/simple/
+pip install timeout-decorator -i https://mirrors.aliyun.com/pypi/simple/
+pip install jieba -i https://mirrors.aliyun.com/pypi/simple/
+pip install matplotlib -i https://mirrors.aliyun.com/pypi/simple/
 cd ..
 
 
@@ -19,7 +20,7 @@ export NCCL_DEBUG=warn
 set -x
 
 export WANDB_OFFICIAL=1
-export WANDB_API_KEY=TO_BE_FILLED
+export WANDB_API_KEY=8c84ddd422687515e5df25109f349a4f2c5df884
 TOTAL_NODES=${ARNOLD_WORKER_NUM:-1}  # Default to 1 if not set
 CURRENT_NODE=${ARNOLD_ID:-0}  # Default to 0 if not set
 
@@ -32,6 +33,14 @@ output_dir="eval_results"
 overwrite=false
 n_sampling=1
 specific_steps=""
+visible_gpus=""
+use_wandb_arg="false" # <--- (新增) 默认值
+
+calculate_metrics="false"
+metrics_to_calc=""
+metric_stride=1
+num_test_sample_per_dataset=-1  # 默认值
+dtype="torch.float16"
 while [[ $# -gt 0 ]]; do
     case $1 in
         --run_name)
@@ -90,6 +99,50 @@ while [[ $# -gt 0 ]]; do
             specific_steps="$2"
             shift 2
             ;;
+        --visible_gpus)
+            visible_gpus="$2"
+            shift 2
+            ;;
+        --calculate_metrics)
+            calculate_metrics="$2"
+            shift 2
+            ;;
+        --metrics_to_calc)
+            metrics_to_calc="$2"
+            shift 2
+            ;;
+        --metric_stride)
+            metric_stride="$2"
+            shift 2
+            ;;
+        --metric_orders)
+            metric_orders="$2"
+            shift 2
+            ;;
+        --use_wandb_arg)
+            use_wandb_arg="$2"
+            shift 2
+            ;;
+        --specific_steps)
+            specific_steps="$2"
+            shift 2
+            ;;
+        --num_test_sample_per_dataset)
+            num_test_sample_per_dataset="$2"
+            shift 2
+            ;;
+        --hdfs_home)
+            HDFS_HOME="$2"
+            shift 2
+            ;;
+        --init_model_base_path)
+            INIT_MODEL_BASE_PATH="$2"
+            shift 2
+            ;;
+        --dtype)
+            dtype="$2"
+            shift 2
+            ;;
         *)
             echo "Unknown parameter: $1"
             exit 1
@@ -105,14 +158,10 @@ if [ -z "$RUN_NAME" ] || [ -z "$INIT_MODEL_PATH" ] || [ -z "$template" ] || [ -z
 fi
 
 
+
 eval_script_path="sh/eval.sh"
-
-HDFS_HOME=TO_BE_FILLED
-
-base_checkpoint_path="${HDFS_HOME}/checkpoints/${RUN_NAME}"
-
-
-init_model_path="${HDFS_HOME}/base_models/${INIT_MODEL_PATH}"
+base_checkpoint_path="${HDFS_HOME}/checkpoint/${RUN_NAME}"
+init_model_path="${INIT_MODEL_BASE_PATH}/${INIT_MODEL_PATH}"
 chmod +x sh/convert_and_evaluate_gpu_nodes.sh
 
 
@@ -141,11 +190,6 @@ if [ "${add_step_0:-false}" = true ]; then
         echo "Node $CURRENT_NODE detected step 0 files are ready"
     fi
 fi
-
-
-
-
-
 
 get_all_checkpoints() {
     local base_path="$1"
@@ -221,17 +265,27 @@ if [ "$just_wandb" != "true" ]; then
     "$tmp_ckpt_file" \
     "$output_dir" \
     "$overwrite" \
-    "$n_sampling"
+    "$n_sampling" \
+    "$visible_gpus" \
+    "$calculate_metrics" \
+    "$metrics_to_calc" \
+    "$metric_stride" \
+    "$metric_orders" \
+    "$num_test_sample_per_dataset" \
+    "$dtype"
 fi
 
-
+WANDB_FLAG="" # <--- (新增) 创建一个空变量
+if [ "$use_wandb_arg" = "true" ]; then # <--- (新增) 判断条件
+    WANDB_FLAG="--use_wandb"
+fi
 
 python sh/collect_results.py \
     --base_dir "$base_checkpoint_path/$output_dir" \
     --model_name $init_model_path \
-    --wandb_project "verl_math_evaluate" \
+    --wandb_project "verl_math_eval_gpugeek" \
     --wandb_api_key "${WANDB_API_KEY}" \
     --wandb_run_name $RUN_NAME \
     --temperature $temperature \
     --benchmarks $benchmarks \
-    --use_wandb   # whether to push to wandb
+    ${WANDB_FLAG} # <--- (新增) 使用我们刚创建的变量

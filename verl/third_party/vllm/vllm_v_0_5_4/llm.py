@@ -163,7 +163,7 @@ class LLM(LLM):
     ) -> None:
         self.llm_engine.tokenizer = tokenizer
 
-    def _run_engine(self, *, use_tqdm: bool) -> List[Union[RequestOutput, EmbeddingRequestOutput]]:
+    def _run_engine(self, *, use_tqdm: bool) -> Tuple[List[Union[RequestOutput, EmbeddingRequestOutput]], List[torch.Tensor]]:
         # Initialize tqdm.
         if use_tqdm:
             num_requests = self.llm_engine.get_num_unfinished_requests()
@@ -193,12 +193,15 @@ class LLM(LLM):
                             pbar.postfix = (f"est. speed input: {in_spd:.2f} toks/s, "
                                             f"output: {out_spd:.2f} toks/s")
                         pbar.update(1)
+                # 
+                
         if use_tqdm:
             pbar.close()
         # Sort the outputs by request ID.
         # This is necessary because some requests may be finished earlier than
         # its previous requests.
         outputs = sorted(outputs, key=lambda x: int(x.request_id))
+        
         return self._post_process_outputs(outputs)
 
     # # NOTE(shengguangming): add for verl
@@ -211,9 +214,12 @@ class LLM(LLM):
     #     return token_ids
 
     # NOTE(shengguangming): add for verl
-    def _post_process_outputs(self, request_outputs: List[RequestOutput]) -> Tuple[torch.Tensor, torch.Tensor]:
+    def _post_process_outputs(self, request_outputs: List[RequestOutput]) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+ 
         output_token_ids = []
         logprobs = []
+        hidden_states_decode_list = []
+        hidden_states_prefill_list = []
         for request_output in request_outputs:  # List[RequestOutput]
             outputs = request_output.outputs
             for output in outputs:  # List[CompletionOutput], usually len == 1
@@ -225,15 +231,38 @@ class LLM(LLM):
                     for logprobs_dict, id in zip(logprobs_dicts, output.token_ids):
                         logprob.append(logprobs_dict[id].logprob)
                     logprobs.append(torch.tensor(logprob))
+                    
+    
+            # 处理 hidden_states, 依次装入 hidden_states_decode_list 长度为 micro bs * rollouts n
+            for hidden_state in request_output.hidden_states_decode:
+                hidden_states_decode_list.append(hidden_state)
+            # 处理 hidden_states_prefill，依次装入 hidden_states_prefill_list 长度为 micro bs
+            for hidden_state in request_output.hidden_states_prefill:
+                hidden_states_prefill_list.append(hidden_state)
 
         pad_token_id = self.llm_engine.tokenizer.pad_token_id if self.llm_engine.tokenizer.pad_token_id is not None else self.llm_engine.tokenizer.eos_token_id
         output_token_ids = pad_sequence(output_token_ids, batch_first=True, padding_value=pad_token_id)
         if len(logprobs) > 0:
             logprobs = pad_sequence(logprobs, batch_first=True, padding_value=pad_token_id)
-        return output_token_ids, logprobs
+        
+        # 处理 hidden_states_decode, m个prompt有n*m个rollouts, 需要右填充, (micro bs * rollouts n, pad max 1, layers, feat_dim)
+        if len(hidden_states_decode_list) > 0:
+            hidden_states_decode = pad_sequence(hidden_states_decode_list, batch_first=True, padding_value=pad_token_id)  # 原本 padding_value=pad_token_id 我现在换成 0
+        else:
+            hidden_states_decode = None
+   
+        # 处理 hidden_states_prefill, 一个prompt只有一个 无需预padding (之前已经pad)， (micro bs, pad max 2, layers, feat_dim)
+        if len(hidden_states_prefill_list) > 0:
+            hidden_states_prefill = torch.stack(hidden_states_prefill_list, dim=0)
+        else:
+            hidden_states_prefill = None
+
+        return output_token_ids, logprobs, hidden_states_decode, hidden_states_prefill
 
     def sync_model_weights(self, actor_weights: Dict[str, torch.Tensor], load_format: str) -> None:
         self.llm_engine.sync_model_weights(actor_weights=actor_weights, load_format=load_format)
 
     def offload_model_weights(self) -> None:
         self.llm_engine.offload_model_weights()
+
+
