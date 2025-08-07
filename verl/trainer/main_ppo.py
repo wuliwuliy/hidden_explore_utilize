@@ -834,7 +834,11 @@ def run_ppo(config, compute_score=None):
         # this is for local ray cluster
         ray.init(runtime_env={'env_vars': {'TOKENIZERS_PARALLELISM': 'true', 'NCCL_DEBUG': 'WARN'}})
 
-    ray.get(main_task.remote(config, compute_score))
+    try:
+        ray.get(main_task.remote(config, compute_score))
+    except Exception as e:
+        breakpoint()
+        
 
 
 @ray.remote
@@ -977,8 +981,10 @@ def main_task(config, compute_score=None):
                             val_reward_fn=val_reward_fn,
                             calculator=calculator)
     trainer.init_workers()
+    # breakpoint()  # For debugging purposes, you can remove this in production
     trainer.fit()
 
 
 if __name__ == '__main__':
+    # breakpoint()
     main()

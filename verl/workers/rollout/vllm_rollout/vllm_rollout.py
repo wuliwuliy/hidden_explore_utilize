@@ -35,9 +35,9 @@ from torch import nn
 from verl import DataProto
 from verl.utils.torch_functional import get_eos_mask, pad_sequence_to_length, pad_4d_tensor, pad_to_packed
 from verl.workers.rollout.base import BaseRollout
-from verl.third_party.vllm import LLM, vllm_version
-from verl.third_party.vllm import parallel_state as vllm_ps
-from vllm import SamplingParams
+from verl.third_party.vllm_number import LLM, vllm_version
+from verl.third_party.vllm_number import parallel_state as vllm_ps
+from hidden_vllm import SamplingParams
 
 # TODO
 # 1. support pp in vllm
@@ -169,6 +169,7 @@ class vLLMRollout(BaseRollout):
     @torch.no_grad()
     def generate_sequences(self, prompts: DataProto, **kwargs) -> DataProto:
         # rebuild vllm cache engine
+        # breakpoint()
         if self.config.free_cache_engine:
             self.inference_engine.init_cache_engine()
 

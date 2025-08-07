@@ -32,7 +32,7 @@ def is_megatron_core_available():
 @cache
 def is_vllm_available():
     try:
-        import vllm
+        import hidden_vllm
         return True
     except ImportError:
         return False

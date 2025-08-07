@@ -46,7 +46,8 @@ export TORCH_CUDA_ARCH_LIST="7.0"  # 指定V100的计算能力
 WORKING_DIR="."
 
 HEAD_IP="10.14.4.13"  
-HEAD_PORT="6379"      
+# HEAD_PORT="6379"   
+HEAD_PORT="6378"  # 确保与Ray集群的端口一致   
 
 # Default values
 TRAIN_BATCH_SIZE=64
@@ -382,7 +383,7 @@ ray job submit --address=${HEAD_IP}:${HEAD_PORT} \
   actor_rollout_ref.rollout.temperature=$TEMPERATURE \
   actor_rollout_ref.rollout.log_prob_micro_batch_size_per_gpu=$LOG_PROB_MICRO_BATCH_SIZE \
   actor_rollout_ref.rollout.tensor_model_parallel_size=$ROLLOUT_TENSOR_MODEL_PARALLEL_SIZE \
-  actor_rollout_ref.rollout.name=vllm \
+  actor_rollout_ref.rollout.name=our_vllm \
   actor_rollout_ref.rollout.gpu_memory_utilization=$ROLLOUT_GPU_MEMORY_UTIL \
   actor_rollout_ref.rollout.n=$ROLLOUT_N \
   actor_rollout_ref.rollout.enable_chunked_prefill=False \

@@ -19,9 +19,9 @@ from torch.distributed.fsdp.api import ShardingStrategy, ShardedStateDictConfig,
 import torch
 
 from verl.utils.distributed import initialize_global_process_group
-from verl.third_party.vllm import LLM
+from verl.third_party.vllm_number import LLM
 
-from vllm import SamplingParams
+from hidden_vllm import SamplingParams
 
 
 def main():

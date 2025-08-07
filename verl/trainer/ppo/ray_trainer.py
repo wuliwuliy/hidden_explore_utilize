@@ -1176,6 +1176,7 @@ class RayPPOTrainer(object):
         # we start from step 1
         self.global_steps += 1
         metrics_old = {}
+        # breakpoint()
         for epoch in range(self.config.trainer.total_epochs):
             for batch_dict in self.train_dataloader:
                 
@@ -1189,6 +1190,7 @@ class RayPPOTrainer(object):
 
                 with _timer('step', timing_raw):
                     # generate a batch
+                    # breakpoint()
                     with _timer('gen', timing_raw):
                         gen_batch_output = self.actor_rollout_wg.generate_sequences(gen_batch)
                         #  

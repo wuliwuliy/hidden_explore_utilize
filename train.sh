@@ -19,7 +19,7 @@ bash train_grpo_math_tune_ray.sh \
     --reward_weights "[0.0, 0.0, 1.0]" \
     --reward_weights_exploit "[0.0, 1.0, 0.0]" \
     --reward_indicator_names "['Effective Rank diff 2', 'Effective Rank diff', 'Effective Rank']" \
-    --val_before_train True \
+    --val_before_train False \
     --val_sample_size 13 \
     --enable_calculator True --metric_indices "[0,1]" \
     --output_token_level_metrics False --compute_log_effective_rank False \

@@ -16,9 +16,9 @@ import os
 import torch
 import transformers
 
-from verl.third_party.vllm import LLM, vllm_version
+from verl.third_party.vllm_number import LLM, vllm_version
 from verl.utils.model import update_model_config
-from vllm import SamplingParams
+from hidden_vllm import SamplingParams
 from transformers import AutoTokenizer, AutoConfig, AutoModelForCausalLM
 
 from transformers import GenerationConfig

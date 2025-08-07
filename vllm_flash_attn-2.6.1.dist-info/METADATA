@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: vllm-flash-attn
+Version: 2.6.1
+Summary: Forward-only flash-attn
+Home-page: https://github.com/vllm-project/flash-attention.git
+Author: vLLM Team
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: Unix
+Requires-Python: >=3.8
+License-File: LICENSE
+License-File: AUTHORS
+Requires-Dist: torch ==2.4.0
+
+Forward-only flash-attn package built for PyTorch 2.4.0 and CUDA 12.1

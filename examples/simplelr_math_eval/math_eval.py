@@ -2,8 +2,8 @@ import random
 import os
 import argparse
 import time
-from vllm import LLM, SamplingParams
-from vllm import SamplingParams
+from hidden_vllm import LLM, SamplingParams
+from hidden_vllm import SamplingParams
 
 from datetime import datetime
 from tqdm import tqdm

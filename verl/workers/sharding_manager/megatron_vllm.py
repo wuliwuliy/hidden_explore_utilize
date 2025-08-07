@@ -227,8 +227,8 @@ from torch.distributed import new_group
 from verl import DataProto
 from verl.utils.torch_functional import (broadcast_dict_tensor, allgather_dict_tensors)
 import verl.utils.megatron.tensor_parallel as tp_utils
-from verl.third_party.vllm import parallel_state as vllm_ps
-from verl.third_party.vllm import LLM
+from verl.third_party.vllm_number import parallel_state as vllm_ps
+from verl.third_party.vllm_number import LLM
 from verl.utils.model import normalize_pp_vpp_params
 # Micro Data parallel group. Micro data parallel group is additional dp group that origins from splitting training tp
 # into infer_tp and micro_tp. By default, we use order micro_dp - tp

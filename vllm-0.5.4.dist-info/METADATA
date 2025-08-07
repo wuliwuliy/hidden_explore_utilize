@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: vllm
+Version: 0.5.4
+Summary: A high-throughput and memory-efficient inference and serving engine for LLMs
+Home-page: https://github.com/vllm-project/vllm
+Author: vLLM Team
+License: Apache 2.0
+Project-URL: Homepage, https://github.com/vllm-project/vllm
+Project-URL: Documentation, https://vllm.readthedocs.io/en/latest/
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: cmake>=3.21
+Requires-Dist: ninja
+Requires-Dist: psutil
+Requires-Dist: sentencepiece
+Requires-Dist: numpy<2.0.0
+Requires-Dist: requests
+Requires-Dist: tqdm
+Requires-Dist: py-cpuinfo
+Requires-Dist: transformers>=4.43.2
+Requires-Dist: tokenizers>=0.19.1
+Requires-Dist: fastapi
+Requires-Dist: aiohttp
+Requires-Dist: openai
+Requires-Dist: uvicorn[standard]
+Requires-Dist: pydantic>=2.0
+Requires-Dist: pillow
+Requires-Dist: prometheus-client>=0.18.0
+Requires-Dist: prometheus-fastapi-instrumentator>=7.0.0
+Requires-Dist: tiktoken>=0.6.0
+Requires-Dist: lm-format-enforcer==0.10.3
+Requires-Dist: outlines<0.1,>=0.0.43
+Requires-Dist: typing-extensions
+Requires-Dist: filelock>=3.10.4
+Requires-Dist: pyzmq
+Requires-Dist: ray>=2.9
+Requires-Dist: nvidia-ml-py
+Requires-Dist: torch==2.4.0
+Requires-Dist: torchvision==0.19
+Requires-Dist: xformers==0.0.27.post2
+Requires-Dist: vllm-flash-attn==2.6.1
+Provides-Extra: tensorizer
+Requires-Dist: tensorizer>=2.9.0; extra == "tensorizer"
+
